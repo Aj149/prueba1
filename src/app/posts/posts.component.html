@@ -1,13 +1,17 @@
 
 
 <h1>hola posts</h1>
-<ul>
-    <li >
-        @for(post of posts; track post.id){
 
-            {{ post.title }}
-        }
-    </li>
-  </ul>
+  <h2>List of Posts</h2>
+<ul>
+  <li>
+    @for(post of posts; track $index){
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.body }}</p>
+    }
+    
+  </li>
+</ul>
+
   
-  <router-outlet></router-outlet>
+  rou
