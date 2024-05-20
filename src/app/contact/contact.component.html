@@ -1,1 +1,40 @@
-<p>contact works!</p>
+<router-outlet></router-outlet>
+<form class="row g-3 needs-validation mt-5 mb-5" [formGroup]="formulario">
+    <div class="col-md-4">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+        <div class="text-danger" *ngIf="formulario.controls['nombre'].invalid && (isFormSubmitted || formulario.controls['nombre'].touched || formulario.controls['nombre'].dirty)">
+            @if(formulario.controls['nombre'].errors?.['required']){
+            Este campo es requerido}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Ingrese un texto</label>
+        <input type="text" class="form-control"  formControlName="texto">
+        <div class="text-danger" *ngIf="formulario.controls['texto'].invalid   && (formulario.controls['texto'].touched || formulario.controls['texto'].dirty)">
+             @if(formulario.controls['texto'].errors?.['required']){ 
+                Este campo es requerido}
+                @if(formulario.controls['texto'].errors?.['minlength'])
+                {ingrese minimo 10 caracteres}
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Correo</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+            <input type="text" class="form-control" formControlName="correo">
+        </div>
+        <div class="text-danger" *ngIf="formulario.controls['correo'].invalid  && (formulario.controls['correo'].touched || formulario.controls['correo'].dirty)">
+            @if(formulario.controls['correo'].errors?.['required'])
+            { Este campo es requerido}
+            @if(formulario.controls['correo'].errors?.['email'])
+             {Ingrese un correo valido}
+        </div>
+    </div>
+   
+   
+    <div class="col-12 mb-5">
+        <button class="btn btn-primary" type="button" (click)="enviar()">enviar</button>
+    </div>
+</form>
